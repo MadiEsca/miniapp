@@ -1,0 +1,47 @@
+<!-- PÁGINA RESPONSÁVEL POR CRIAR O ALUNO -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de cadastro</title>
+</head>
+<body>
+    <h1>Formulario de cadastro - Seja bem vindo</h1>
+    
+    <div class="formulario">
+        <!-- Envia a requisição para a rota /cadastro utilizando o método POST -->
+        <form action="/cadastro" method="post">
+            <!-- Dentro desse HTML será renderizado o formulário criado com o flask -->
+            {{ form.hidden_tag() }} <!-- Instrução padrão -->
+            
+            {{ form.aluno_nome.label }} {{ form.aluno_nome() }} <br> <!-- label + campo -->
+            <!-- Mensagens de erro que foram "personalizadas" (argumento message) -->
+            {% for error in form.aluno_nome.errors %}
+                <b> {{error}} </b> <br>
+            {% endfor %}
+
+            {{ form.aluno_data_nascimento.label }} {{ form.aluno_data_nascimento() }} <br> <!-- label + campo -->
+            {% for error in form.aluno_data_nascimento.errors %}
+                <b> {{ error }} </b> <br>
+            {% endfor %}
+
+            {{ form.aluno_email.label }} {{ form.aluno_email() }} <br> <!-- label + campo -->
+            {% for error in form.aluno_email.errors %}
+                <b> {{error}} </b><br>
+            {% endfor %}
+
+
+
+            <!-- Inserindo código dentro do HTML - laço for-endfor -->
+            <!--
+            {#% for i in [3...20] %#}
+                <p>i</p>
+            {#% endfor %#}
+            -->
+            {{ form.enviar() }} <!-- campo -->
+        </form>
+        <a href="/">Retornar ao início</a>
+    </div>
+</body>
+</html>
